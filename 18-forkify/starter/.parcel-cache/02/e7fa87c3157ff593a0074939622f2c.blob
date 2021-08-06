@@ -1,0 +1,23 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getJSON = void 0;
+
+var _regeneratorRuntime = require("regenerator-runtime");
+
+const getJSON = async function (url) {
+  try {
+    const res = await fetch(url); // // 'https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bcfb2'
+    // `${API_URL}/${id}`
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(`\nError message: ${data.message} \nStatus code: ${res.status}`);
+    return data;
+  } catch (err) {
+    throw `${err} 'from here to there 💩🔥'`;
+  }
+};
+
+exports.getJSON = getJSON;

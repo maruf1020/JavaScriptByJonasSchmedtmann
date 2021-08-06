@@ -1,0 +1,29 @@
+lecture  1:
+just intro
+
+lecture  2: 
+Nothing
+
+lecture  3:
+3. PROJECT #1 Guess My Number! intro 
+
+
+lecture  4:
+4. What's the DOM and DOM Manipulation
+
+
+lecture  5:
+lecture  6:
+lecture  7:
+lecture  8:
+lecture  9:
+lecture  10:
+lecture  11:
+lecture  12:
+lecture  13:
+lecture  14:
+lecture  15:
+lecture  16:
+lecture  17:
+lecture  18:
+lecture  19:
