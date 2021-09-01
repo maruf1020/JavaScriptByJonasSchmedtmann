@@ -56,3 +56,7 @@ Again create this branch
 //////////////////////////////////////////////// 
 Lecture 10
 Event Handlers in MVC Publisher-Subscriber Pattern
+
+//////////////////////////////////////////////// 
+Lecture 11
+Implementing Error and Success Messages
