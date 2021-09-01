@@ -64,3 +64,8 @@ Implementing Error and Success Messages
 //////////////////////////////////////////////// 
 Lecture 12
 Implementing Search Results - Part 1
+
+//////////////////////////////////////////////// 
+Lecture 13
+Implementing Search Results - Part 2
+
