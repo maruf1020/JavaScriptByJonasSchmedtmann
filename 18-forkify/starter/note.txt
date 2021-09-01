@@ -60,3 +60,7 @@ Event Handlers in MVC Publisher-Subscriber Pattern
 //////////////////////////////////////////////// 
 Lecture 11
 Implementing Error and Success Messages
+
+//////////////////////////////////////////////// 
+Lecture 12
+Implementing Search Results - Part 1
