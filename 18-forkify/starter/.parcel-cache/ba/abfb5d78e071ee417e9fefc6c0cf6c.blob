@@ -437,6 +437,11 @@ module.exports.resolve = resolve;
 },{}],"175e469a7ea7db1c8c0744d04372621f":[function(require,module,exports) {
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getSearchResultPage = void 0;
+
 require("core-js/modules/web.immediate.js");
 
 var model = _interopRequireWildcard(require("./model.js"));
@@ -458,9 +463,10 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 // const recipeContainer = document.querySelector('.recipe');
 // https://forkify-api.herokuapp.com/v2
 ///////////////////////////////////////
-// if (module.hot) {
-//   module.hot.accept();
-// }
+if (module.hot) {
+  module.hot.accept();
+}
+
 const controlRecipes = async function () {
   try {
     const id = window.location.hash.slice(1); // console.log(id);
@@ -473,8 +479,7 @@ const controlRecipes = async function () {
     await model.loadRecipe(id); // const { recipe } = model.state;
     // 2) Rendaring recepi
 
-    _recipeView.default.render(model.state.recipe); // recipeView.render(model.getSearchResultPage(1));
-    // const recipeView = new recipeView(model.state.recipe)
+    _recipeView.default.render(model.state.recipe); // const recipeView = new recipeView(model.state.recipe)
 
   } catch (err) {
     // console.log(err);
@@ -494,9 +499,8 @@ const controlSearchResult = async function () {
 
     await model.loadSearchResults(query);
     console.log('ddd'); // 3) render result
-    // resultsView.render(model.state.search.results);
 
-    _resultsView.default.render(model.getSearchResultPage()); // console.log(model.state.search.results);
+    _resultsView.default.render(model.state.search.results); // console.log(model.state.search.results);
 
   } catch (err) {
     console.log(err);
@@ -515,6 +519,16 @@ init(); // controlRecipes();
 // );
 // window.addEventListener('hashchange', controlRecipes)
 // window.addEventListener('load', controlRecipes)
+
+const getSearchResultPage = function (page) {
+  const start = (page - 1) * 10; //0
+
+  const end = page * 10; //9
+
+  return state.search.results.slice(start, end);
+};
+
+exports.getSearchResultPage = getSearchResultPage;
 },{"core-js/modules/web.immediate.js":"140df4f8e97a45c53c66fead1f5a9e92","./model.js":"aabf248f40f7693ef84a0cb99f385d1f","./views/recipeView.js":"bcae1aced0301b01ccacb3e6f7dfede8","./views/searchView.js":"c5d792f7cac03ef65de30cc0fbb2cae7","./views/resultsView.js":"eacdbc0d50ee3d2819f3ee59366c2773","regenerator-runtime/runtime":"e155e0d3930b156f86c48e8d05522b16"}],"140df4f8e97a45c53c66fead1f5a9e92":[function(require,module,exports) {
 var $ = require('../internals/export');
 
@@ -1357,7 +1371,7 @@ module.exports = getBuiltIn('navigator', 'userAgent') || '';
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getSearchResultPage = exports.loadSearchResults = exports.loadRecipe = exports.state = void 0;
+exports.loadSearchResults = exports.loadRecipe = exports.state = void 0;
 
 var _regeneratorRuntime = require("regenerator-runtime");
 
@@ -1369,9 +1383,7 @@ const state = {
   recipe: {},
   search: {
     query: '',
-    page: 1,
-    results: [],
-    resultsPerPage: _config.RES_PER_PAGE
+    results: []
   }
 };
 exports.state = state;
@@ -1422,17 +1434,6 @@ const loadSearchResults = async function (quary) {
 };
 
 exports.loadSearchResults = loadSearchResults;
-
-const getSearchResultPage = function (page = state.search.page) {
-  state.search.page = page;
-  const start = (page - 1) * state.search.resultsPerPage; //0
-
-  const end = page * state.search.resultsPerPage; //9 (10)
-
-  return state.search.results.slice(start, end);
-};
-
-exports.getSearchResultPage = getSearchResultPage;
 },{"regenerator-runtime":"e155e0d3930b156f86c48e8d05522b16","./config":"09212d541c5c40ff2bd93475a904f8de","./helpers":"0e8dcd8a4e1c61cf18f78e1c2563655d"}],"e155e0d3930b156f86c48e8d05522b16":[function(require,module,exports) {
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
@@ -2189,13 +2190,11 @@ try {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.RES_PER_PAGE = exports.TIMEOUT_SEC = exports.API_URL = void 0;
+exports.TIMEOUT_SEC = exports.API_URL = void 0;
 const API_URL = 'https://forkify-api.herokuapp.com/api/v2/recipes/';
 exports.API_URL = API_URL;
 const TIMEOUT_SEC = 20;
 exports.TIMEOUT_SEC = TIMEOUT_SEC;
-const RES_PER_PAGE = 10;
-exports.RES_PER_PAGE = RES_PER_PAGE;
 },{}],"0e8dcd8a4e1c61cf18f78e1c2563655d":[function(require,module,exports) {
 "use strict";
 

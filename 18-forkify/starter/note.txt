@@ -69,3 +69,7 @@ Implementing Search Results - Part 1
 Lecture 13
 Implementing Search Results - Part 2
 
+
+//////////////////////////////////////////////// 
+Lecture 14
+Implementing Pagination - Part 1

@@ -458,9 +458,10 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 // const recipeContainer = document.querySelector('.recipe');
 // https://forkify-api.herokuapp.com/v2
 ///////////////////////////////////////
-// if (module.hot) {
-//   module.hot.accept();
-// }
+if (module.hot) {
+  module.hot.accept();
+}
+
 const controlRecipes = async function () {
   try {
     const id = window.location.hash.slice(1); // console.log(id);
@@ -473,8 +474,7 @@ const controlRecipes = async function () {
     await model.loadRecipe(id); // const { recipe } = model.state;
     // 2) Rendaring recepi
 
-    _recipeView.default.render(model.state.recipe); // recipeView.render(model.getSearchResultPage(1));
-    // const recipeView = new recipeView(model.state.recipe)
+    _recipeView.default.render(model.state.recipe); // const recipeView = new recipeView(model.state.recipe)
 
   } catch (err) {
     // console.log(err);
@@ -494,9 +494,8 @@ const controlSearchResult = async function () {
 
     await model.loadSearchResults(query);
     console.log('ddd'); // 3) render result
-    // resultsView.render(model.state.search.results);
 
-    _resultsView.default.render(model.getSearchResultPage()); // console.log(model.state.search.results);
+    _resultsView.default.render(model.state.search.results); // console.log(model.state.search.results);
 
   } catch (err) {
     console.log(err);
@@ -1369,9 +1368,8 @@ const state = {
   recipe: {},
   search: {
     query: '',
-    page: 1,
     results: [],
-    resultsPerPage: _config.RES_PER_PAGE
+    resultsPerPage: 10
   }
 };
 exports.state = state;
@@ -1423,8 +1421,7 @@ const loadSearchResults = async function (quary) {
 
 exports.loadSearchResults = loadSearchResults;
 
-const getSearchResultPage = function (page = state.search.page) {
-  state.search.page = page;
+const getSearchResultPage = function (page) {
   const start = (page - 1) * state.search.resultsPerPage; //0
 
   const end = page * state.search.resultsPerPage; //9 (10)
@@ -2189,13 +2186,11 @@ try {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.RES_PER_PAGE = exports.TIMEOUT_SEC = exports.API_URL = void 0;
+exports.TIMEOUT_SEC = exports.API_URL = void 0;
 const API_URL = 'https://forkify-api.herokuapp.com/api/v2/recipes/';
 exports.API_URL = API_URL;
 const TIMEOUT_SEC = 20;
 exports.TIMEOUT_SEC = TIMEOUT_SEC;
-const RES_PER_PAGE = 10;
-exports.RES_PER_PAGE = RES_PER_PAGE;
 },{}],"0e8dcd8a4e1c61cf18f78e1c2563655d":[function(require,module,exports) {
 "use strict";
 
