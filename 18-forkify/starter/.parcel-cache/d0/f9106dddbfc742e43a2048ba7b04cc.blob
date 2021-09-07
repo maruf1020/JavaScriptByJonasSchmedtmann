@@ -529,23 +529,14 @@ const controlServings = function (newServings) {
 };
 
 const controlBookmark = function () {
-  if (!model.state.recipe.bookmarked) {
-    model.addBookmark(model.state.recipe);
-  } else {
-    model.deleteBookmark(model.state.recipe.id);
-  }
-
+  model.addBookmark(model.state.recipe);
   console.log(model.state.recipe);
-
-  _recipeView.default.update(model.state.recipe);
 };
 
 const init = function () {
   _recipeView.default.addHandlerRander(controlRecipes);
 
   _recipeView.default.addHendelerUpdateServings(controlServings);
-
-  _recipeView.default.addHandlerAddBookmark(controlBookmark);
 
   _searchView.default.addHandelerSearch(controlSearchResult);
 
@@ -1400,7 +1391,7 @@ module.exports = getBuiltIn('navigator', 'userAgent') || '';
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deleteBookmark = exports.addBookmark = exports.updateServings = exports.getSearchResultPage = exports.loadSearchResults = exports.loadRecipe = exports.state = void 0;
+exports.addBookmark = exports.updateServings = exports.getSearchResultPage = exports.loadSearchResults = exports.loadRecipe = exports.state = void 0;
 
 var _regeneratorRuntime = require("regenerator-runtime");
 
@@ -1436,13 +1427,6 @@ const loadRecipe = async function (id) {
       cookingTime: recipe.cooking_time,
       ingredients: recipe.ingredients
     };
-
-    if (state.bookmarks.some(bookmark => bookmark.id === id)) {
-      state.recipe.bookmarked = true;
-    } else {
-      state.recipe.bookmarked = false;
-    }
-
     console.log(state.recipe);
   } catch (err) {
     // temporaty error handeling
@@ -1505,18 +1489,6 @@ const addBookmark = function (recipe) {
 };
 
 exports.addBookmark = addBookmark;
-
-const deleteBookmark = function (id) {
-  // Delete bookmarks
-  const index = state.bookmarks.findIndex(el => el.id === id);
-  state.bookmarks.splice(index, 1); //  Mark current recipe as NOT bookmarks
-
-  if (id === state.recipe.id) {
-    state.recipe.bookmarked = false;
-  }
-};
-
-exports.deleteBookmark = deleteBookmark;
 },{"regenerator-runtime":"e155e0d3930b156f86c48e8d05522b16","./config":"09212d541c5c40ff2bd93475a904f8de","./helpers":"0e8dcd8a4e1c61cf18f78e1c2563655d"}],"e155e0d3930b156f86c48e8d05522b16":[function(require,module,exports) {
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
@@ -2360,11 +2332,7 @@ class RecipeView extends _View.default {
   }
 
   addHandlerAddBookmark(handeler) {
-    this._parentElement.addEventListener('click', function (e) {
-      const btn = e.target.closest('.btn--bookmark');
-      if (!btn) return;
-      handeler();
-    });
+    this._parentElement.addEventListener('click', function (e) {});
   }
 
   _generateMarkup() {
@@ -2410,7 +2378,7 @@ class RecipeView extends _View.default {
           </div>
           <button class="btn--round btn--bookmark">
             <svg class="">
-              <use href="${_icons.default}#icon-bookmark${this._data.bookmarked ? '-fill' : ''}"></use>
+              <use href="${_icons.default}#icon-bookmark"></use>
             </svg>
           </button>
         </div>

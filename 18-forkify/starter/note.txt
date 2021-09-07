@@ -92,3 +92,7 @@ Updating Recipe Servings
 //////////////////////////////////////////////// 
 Lecture 18
 Developing a DOM Updating Algorithm
+
+//////////////////////////////////////////////// 
+Lecture 19
+Implementing Bookmarks - Part 1

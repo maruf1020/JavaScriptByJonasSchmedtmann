@@ -529,12 +529,8 @@ const controlServings = function (newServings) {
 };
 
 const controlBookmark = function () {
-  if (!model.state.recipe.bookmarked) {
-    model.addBookmark(model.state.recipe);
-  } else {
-    model.deleteBookmark(model.state.recipe.id);
-  }
-
+  if (!model.state.recipe.bookmarked) model.addBookmark(model.state.recipe);
+  if (model.state.recipe.bookmarked) model.deleteBookmark(model.state.recipe.id);
   console.log(model.state.recipe);
 
   _recipeView.default.update(model.state.recipe);
